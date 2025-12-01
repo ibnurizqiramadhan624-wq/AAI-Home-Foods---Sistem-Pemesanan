@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - AAI Home Foods</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <style>
+        .admin-credentials {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .admin-credentials h4 {
+            margin-top: 0;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .credential-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .credential-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .credential-item h5 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        
+        .credential-item p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-section">
+        <div class="container">
+            <div class="auth-container" style="max-width: 500px; margin: 0 auto;">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <div class="logo-admin">
+                            <i class="fas fa-utensils"></i>
+                            AAI Home Foods
+                        </div>
+                        <h1>Admin Login</h1>
+                        <p>Management System - Team Adit, Ibnu, Akmal</p>
+                    </div>
+
+                    <div id="login-error" class="alert alert-error" style="display: none;"></div>
+
+                    <form id="admin-login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="admin-email">Admin Email</label>
+                            <input type="email" id="admin-email" name="email" required 
+                                   placeholder="Masukkan email admin">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="admin-password">Password</label>
+                            <input type="password" id="admin-password" name="password" required 
+                                   placeholder="Masukkan password">
+                        </div>
+
+                        <button type="submit" class="auth-btn" id="login-btn">
+                            <span id="btn-text">Login as Admin</span>
+                            <span id="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Loading...
+                            </span>
+                        </button>
+
+                        <div class="auth-footer">
+                            <p><a href="../index.html"><i class="fas fa-arrow-left"></i> Back to Main Site</a></p>
+                        </div>
+                    </form>
+                    
+                    <!-- Admin Credentials -->
+                    <div class="admin-credentials">
+                        <h4><i class="fas fa-user-shield"></i> Credentials for Testing</h4>
+                        <div class="credential-list">
+                            <div class="credential-item">
+                                <h5>Adit</h5>
+                                <p><strong>Email:</strong> adit@aaihomefoods.com</p>
+                                <p><strong>Password:</strong> adit123</p>
+                                <p><small>Role: Super Admin</small></p>
+                            </div>
+                            <div class="credential-item">
+                                <h5>Ibnu</h5>
+                                <p><strong>Email:</strong> ibnu@aaihomefoods.com</p>
+                                <p><strong>Password:</strong> ibnu123</p>
+                                <p><small>Role: Order Manager</small></p>
+                            </div>
+                            <div class="credential-item">
+                                <h5>Akmal</h5>
+                                <p><strong>Email:</strong> akmal@aaihomefoods.com</p>
+                                <p><strong>Password:</strong> akmal123</p>
+                                <p><small>Role: Menu Manager</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('admin-login-form');
+            const errorDiv = document.getElementById('login-error');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('admin-email').value.trim();
+                const password = document.getElementById('admin-password').value;
+                
+                // Show loading
+                const btn = document.getElementById('login-btn');
+                const btnText = document.getElementById('btn-text');
+                const btnLoading = document.getElementById('btn-loading');
+                
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline-block';
+                btn.disabled = true;
+                
+                // Hide previous error
+                errorDiv.style.display = 'none';
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Simple validation
+                    if (!email || !password) {
+                        showError('Email dan password harus diisi!');
+                        return;
+                    }
+                    
+                    // Login successful
+                    localStorage.setItem('admin_token', 'logged_in');
+                    localStorage.setItem('admin_email', email);
+                    
+                    // Determine admin name from email
+                    let adminName = 'Administrator';
+                    if (email.includes('adit')) adminName = 'Adit';
+                    if (email.includes('ibnu')) adminName = 'Ibnu';
+                    if (email.includes('akmal')) adminName = 'Akmal';
+                    
+                    localStorage.setItem('admin_name', adminName);
+                    
+                    // Determine role from email
+                    let role = 'admin';
+                    if (email.includes('adit')) role = 'super_admin';
+                    if (email.includes('ibnu')) role = 'order_manager';
+                    if (email.includes('akmal')) role = 'menu_manager';
+                    
+                    localStorage.setItem('admin_role', role);
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                    
+                }, 1000);
+            });
+            
+            function showError(message) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                
+                // Reset button
+                document.getElementById('btn-text').style.display = 'inline-block';
+                document.getElementById('btn-loading').style.display = 'none';
+                document.getElementById('login-btn').disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

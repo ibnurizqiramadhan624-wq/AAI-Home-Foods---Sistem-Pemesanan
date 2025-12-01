@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AAI Home Foods</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Fix untuk glitch */
+        .admin-wrapper {
+            display: flex;
+            min-height: 100vh;
+            background: #f5f6fa;
+        }
+        
+        .admin-main {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .container-fluid {
+            width: 100%;
+            padding: 0 15px;
+        }
+        
+        /* Loading states */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Chart container fix */
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="admin-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="nav-left">
+                    <a href="../index.html" class="logo">AAI Home Foods</a>
+                    <span class="admin-badge">Admin Panel</span>
+                </div>
+                
+                <div class="nav-right">
+                    <div class="admin-user">
+                        <div class="user-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <span id="admin-name">Administrator</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="../index.html" target="_blank" title="View Site">
+                            <i class="fas fa-external-link-alt"></i> View Site
+                        </a></li>
+                        <li><a href="#" id="admin-logout" title="Logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-wrapper">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-profile">
+                    <div class="admin-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="admin-info">
+                        <h3 id="admin-display-name">Admin User</h3>
+                        <p id="admin-role-text">Administrator</p>
+                        <span class="admin-status active">● Online</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html" id="nav-dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-orders">
+                        <a href="manage-orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Manage Orders</span>
+                            <span class="badge pending" id="pending-orders-badge">0</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-menu">
+                        <a href="manage-menu.html">
+                            <i class="fas fa-utensils"></i>
+                            <span>Manage Menu</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-customers">
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-payments">
+                        <a href="#">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-analytics">
+                        <a href="#">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-settings">
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p class="version">v1.0.0</p>
+                <p class="copyright">© 2024 AAI Home Foods</p>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="container-fluid">
+                <!-- PAGE HEADER -->
+                <div class="page-header">
+                    <div class="header-left">
+                        <h1><i class="fas fa-tachometer-alt"></i> Dashboard Overview</h1>
+                        <p class="page-subtitle">Welcome back, <span id="welcome-name">Admin</span>!</p>
+                    </div>
+                    <div class="header-right">
+                        <div class="date-display">
+                            <i class="far fa-calendar"></i>
+                            <span id="current-date"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS CARDS -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-card revenue">
+                            <div class="stat-icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Total Revenue</h3>
+                                <h2 id="total-revenue">Rp 0</h2>
+                                <div class="stat-trend">
+                                    <span class="trend-up"><i class="fas fa-arrow-up"></i> 12%</span>
+                                    from last month
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="stat-card orders">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Total Orders</h3>
+                                <h2 id="total-orders">0</h2>
+                                <div class="stat-trend">
+                                    <span class="trend-up"><i class="fas fa-arrow-up"></i> 8%</span>
+                                    from last month
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="stat-card customers">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Total Customers</h3>
+                                <h2 id="total-customers">0</h2>
+                                <div class="stat-trend">
+                                    <span class="trend-up"><i class="fas fa-arrow-up"></i> 15%</span>
+                                    from last month
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="stat-card menu">
+                            <div class="stat-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Menu Items</h3>
+                                <h2 id="total-menu-items">0</h2>
+                                <div class="stat-trend">
+                                    <span class="trend-neutral">Active items</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHARTS SECTION -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-line"></i> Revenue Overview</h3>
+                                <select id="revenue-period" class="period-select">
+                                    <option value="7">Last 7 Days</option>
+                                    <option value="30" selected>Last 30 Days</option>
+                                    <option value="90">Last 90 Days</option>
+                                </select>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="revenue-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-pie"></i> Order Status</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <canvas id="orders-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECENT ACTIVITY -->
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-history"></i> Recent Orders</h3>
+                                <a href="manage-orders.html" class="btn-view-all">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table recent-orders">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Customer</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recent-orders-list">
+                                            <tr>
+                                                <td colspan="5" class="text-center">
+                                                    <div class="loading-spinner"></div>
+                                                    <p>Loading orders...</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-fire"></i> Popular Items</h3>
+                                <a href="manage-menu.html" class="btn-view-all">View All</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="popular-items-list" id="popular-items-list">
+                                    <div class="loading-spinner"></div>
+                                    <p class="text-center">Loading popular items...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Initialize Charts
+        let revenueChart, ordersChart;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Authentication check
+            if (!localStorage.getItem('admin_token')) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            
+            // Initialize dashboard
+            initDashboard();
+            
+            // Load data
+            loadDashboardData();
+            
+            // Setup charts after a short delay to ensure DOM is ready
+            setTimeout(() => {
+                setupCharts();
+            }, 100);
+        });
+        
+        function initDashboard() {
+            // Set current date
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = now.toLocaleDateString('id-ID', options);
+            
+            // Set admin info
+            const adminName = localStorage.getItem('admin_name') || 'Administrator';
+            const adminRole = localStorage.getItem('admin_role') || 'admin';
+            
+            document.getElementById('admin-name').textContent = adminName;
+            document.getElementById('admin-display-name').textContent = adminName;
+            document.getElementById('welcome-name').textContent = adminName;
+            
+            // Set role text
+            const roleText = document.getElementById('admin-role-text');
+            switch(adminRole) {
+                case 'super_admin':
+                    roleText.textContent = 'Super Administrator';
+                    roleText.style.color = '#8e44ad';
+                    break;
+                case 'order_manager':
+                    roleText.textContent = 'Order Manager';
+                    roleText.style.color = '#3498db';
+                    break;
+                case 'menu_manager':
+                    roleText.textContent = 'Menu Manager';
+                    roleText.style.color = '#e67e22';
+                    break;
+                default:
+                    roleText.textContent = 'Administrator';
+            }
+            
+            // Setup role-based menu
+            setupRoleBasedMenu(adminRole);
+            
+            // Logout functionality
+            document.getElementById('admin-logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.clear();
+                    window.location.href = 'admin-login.html';
+                }
+            });
+        }
+        
+        function setupRoleBasedMenu(role) {
+            const menuPermissions = {
+                'super_admin': ['dashboard', 'orders', 'menu', 'customers', 'payments', 'analytics', 'settings'],
+                'order_manager': ['dashboard', 'orders', 'payments', 'analytics'],
+                'menu_manager': ['dashboard', 'menu', 'analytics']
+            };
+            
+            const allowedMenus = menuPermissions[role] || ['dashboard'];
+            
+            // Hide all menu items first
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (!item.id.includes('dashboard')) {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show only allowed menus
+            allowedMenus.forEach(menuId => {
+                const menuItem = document.getElementById(`nav-${menuId}`);
+                if (menuItem) {
+                    menuItem.style.display = 'block';
+                }
+            });
+            
+            // Highlight current page
+            document.querySelectorAll('.nav-item a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const dashboardLink = document.querySelector('#nav-dashboard a');
+            if (dashboardLink) {
+                dashboardLink.classList.add('active');
+            }
+        }
+        
+        function loadDashboardData() {
+            // Simulate loading data
+            setTimeout(() => {
+                // Update stats
+                document.getElementById('total-revenue').textContent = 'Rp 5.250.000';
+                document.getElementById('total-orders').textContent = '124';
+                document.getElementById('total-customers').textContent = '89';
+                document.getElementById('total-menu-items').textContent = '24';
+                
+                // Load recent orders
+                loadRecentOrders();
+                
+                // Load popular items
+                loadPopularItems();
+            }, 500);
+        }
+        
+        function loadRecentOrders() {
+            const orders = [
+                { id: 'ORD-001', customer: 'John Doe', total: 'Rp 125.000', status: 'Completed', date: '2024-01-15' },
+                { id: 'ORD-002', customer: 'Jane Smith', total: 'Rp 85.000', status: 'Processing', date: '2024-01-15' },
+                { id: 'ORD-003', customer: 'Robert Johnson', total: 'Rp 210.000', status: 'Pending', date: '2024-01-14' },
+                { id: 'ORD-004', customer: 'Sarah Wilson', total: 'Rp 95.000', status: 'Completed', date: '2024-01-14' },
+                { id: 'ORD-005', customer: 'Michael Brown', total: 'Rp 150.000', status: 'Completed', date: '2024-01-13' }
+            ];
+            
+            const tbody = document.getElementById('recent-orders-list');
+            tbody.innerHTML = orders.map(order => `
+                <tr>
+                    <td><strong>${order.id}</strong></td>
+                    <td>${order.customer}</td>
+                    <td>${order.total}</td>
+                    <td><span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span></td>
+                    <td>${order.date}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function loadPopularItems() {
+            const items = [
+                { name: 'Ayam Ulam Bali', orders: 45, revenue: 'Rp 2.025.000' },
+                { name: 'Salmon Wellington', orders: 32, revenue: 'Rp 2.720.000' },
+                { name: 'Seafood Pasta', orders: 28, revenue: 'Rp 1.820.000' },
+                { name: 'Beef Teppanyaki', orders: 25, revenue: 'Rp 1.875.000' },
+                { name: 'Zuppa Soup', orders: 22, revenue: 'Rp 770.000' }
+            ];
+            
+            const container = document.getElementById('popular-items-list');
+            container.innerHTML = items.map(item => `
+                <div class="popular-item">
+                    <div class="popular-item-info">
+                        <h4>${item.name}</h4>
+                        <div class="popular-item-stats">
+                            <span class="orders">${item.orders} orders</span>
+                            <span class="revenue">${item.revenue}</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: ${(item.orders / 50) * 100}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function setupCharts() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenue-chart')?.getContext('2d');
+            if (revenueCtx) {
+                revenueChart = new Chart(revenueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                        datasets: [{
+                            label: 'Revenue (Rp)',
+                            data: [3200000, 4200000, 3800000, 5100000, 4900000, 5200000, 5250000],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'Rp ' + value.toLocaleString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Orders Chart
+            const ordersCtx = document.getElementById('orders-chart')?.getContext('2d');
+            if (ordersCtx) {
+                ordersChart = new Chart(ordersCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Completed', 'Processing', 'Pending', 'Cancelled'],
+                        datasets: [{
+                            data: [85, 10, 5, 2],
+                            backgroundColor: [
+                                '#27ae60',
+                                '#3498db',
+                                '#f39c12',
+                                '#e74c3c'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Period selector event
+            const periodSelect = document.getElementById('revenue-period');
+            if (periodSelect) {
+                periodSelect.addEventListener('change', function() {
+                    updateChartData(this.value);
+                });
+            }
+        }
+        
+        function updateChartData(period) {
+            // Simulate updating chart data based on period
+            if (revenueChart) {
+                let newData;
+                switch(period) {
+                    case '7':
+                        newData = [4500000, 4800000, 5100000, 4900000, 5250000, 5000000, 4800000];
+                        break;
+                    case '30':
+                        newData = [3200000, 4200000, 3800000, 5100000, 4900000, 5200000, 5250000];
+                        break;
+                    case '90':
+                        newData = [2500000, 2800000, 3200000, 3500000, 4200000, 3800000, 5100000, 4900000, 5200000, 5250000];
+                        break;
+                }
+                
+                revenueChart.data.datasets[0].data = newData;
+                revenueChart.update();
+            }
+        }
+        
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                if (revenueChart) revenueChart.resize();
+                if (ordersChart) ordersChart.resize();
+            }, 250);
+        });
+    </script>
+</body>
+</html>

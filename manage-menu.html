@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Menu - AAI Home Foods Admin</title>
+    
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .menu-item-card {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .menu-item-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-available {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .status-unavailable {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .category-main-course { background: #3498db; color: white; }
+        .category-appetizer { background: #9b59b6; color: white; }
+        .category-soup { background: #1abc9c; color: white; }
+        .category-dessert { background: #e67e22; color: white; }
+        .category-drinks { background: #e74c3c; color: white; }
+        
+        .price-tag {
+            font-size: 18px;
+            font-weight: 700;
+            color: #27ae60;
+        }
+        
+        .search-container {
+            position: relative;
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        .search-container input {
+            padding-left: 40px;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 50px 20px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = 'admin-login.html';
+        }
+    </script>
+
+    <header class="admin-header">
+        <div class="container">
+            <div class="navbar">
+                <div class="nav-left">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-utensils"></i>
+                        AAI Home Foods
+                    </a>
+                    <span class="admin-badge">Admin Panel</span>
+                </div>
+                
+                <div class="nav-right">
+                    <div class="admin-user">
+                        <div class="user-icon">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <span id="header-admin-name">Administrator</span>
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="../index.html" target="_blank" title="View Site">
+                            <i class="fas fa-external-link-alt"></i> View Site
+                        </a></li>
+                        <li><a href="dashboard.html" title="Dashboard">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a></li>
+                        <li><a href="#" id="admin-logout" title="Logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-wrapper">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="admin-profile">
+                    <div class="admin-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="admin-info">
+                        <h3 id="admin-display-name">Admin User</h3>
+                        <p id="admin-role-text">Administrator</p>
+                        <span class="admin-status active">● Online</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html" id="nav-dashboard">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-orders">
+                        <a href="manage-orders.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Manage Orders</span>
+                            <span class="badge pending" id="pending-orders-badge">0</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-menu">
+                        <a href="manage-menu.html">
+                            <i class="fas fa-utensils"></i>
+                            <span>Manage Menu</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-customers">
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-payments">
+                        <a href="#">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Payments</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-analytics">
+                        <a href="#">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item" id="nav-settings">
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <p class="version">v1.0.0</p>
+                <p class="copyright">© 2024 AAI Home Foods</p>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="header-left">
+                        <h1><i class="fas fa-utensils"></i> Manage Menu Items</h1>
+                        <p class="page-subtitle">Add, edit, or remove menu items from your restaurant</p>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn-primary" id="add-menu-btn">
+                            <i class="fas fa-plus"></i> Add New Item
+                        </button>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="menu-search" placeholder="Search menu items...">
+                        </div>
+                        
+                        <select id="category-filter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="main-course">Main Course</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="soup">Soup</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                        
+                        <select id="status-filter" class="filter-select">
+                            <option value="all">All Status</option>
+                            <option value="available">Available</option>
+                            <option value="unavailable">Unavailable</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="menu-management">
+                    <div id="menu-items-container">
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <p>Loading menu items...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="menu-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add Menu Item</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="menu-form" class="modal-form">
+                <input type="hidden" id="menu-id">
+                
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="item-description">Description</label>
+                    <textarea id="item-description" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="item-price">Price (Rp)</label>
+                        <input type="number" id="item-price" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="item-category">Category</label>
+                        <select id="item-category" required>
+                            <option value="main-course">Main Course</option>
+                            <option value="appetizer">Appetizer</option>
+                            <option value="soup">Soup</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="item-image">Image URL</label>
+                    <input type="text" id="item-image" placeholder="Image URL">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary close-modal">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/admin-menu.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set admin info
+            const adminName = localStorage.getItem('admin_name') || 'Administrator';
+            const adminRole = localStorage.getItem('admin_role') || 'admin';
+            
+            document.getElementById('header-admin-name').textContent = adminName;
+            document.getElementById('admin-display-name').textContent = adminName;
+            
+            // Set role text
+            const roleText = document.getElementById('admin-role-text');
+            switch(adminRole) {
+                case 'super_admin':
+                    roleText.textContent = 'Super Administrator';
+                    roleText.style.color = '#8e44ad';
+                    break;
+                case 'order_manager':
+                    roleText.textContent = 'Order Manager';
+                    roleText.style.color = '#3498db';
+                    break;
+                case 'menu_manager':
+                    roleText.textContent = 'Menu Manager';
+                    roleText.style.color = '#e67e22';
+                    break;
+                default:
+                    roleText.textContent = 'Administrator';
+            }
+            
+            // Check if user has access to this page
+            if (adminRole === 'order_manager') {
+                alert('Anda tidak memiliki akses ke halaman ini!');
+                window.location.href = 'dashboard.html';
+                return;
+            }
+            
+            // Setup role-based menu
+            setupRoleBasedMenu(adminRole);
+            
+            // Logout functionality
+            document.getElementById('admin-logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.clear();
+                window.location.href = 'admin-login.html';
+            });
+        });
+        
+        function setupRoleBasedMenu(role) {
+            const menuPermissions = {
+                'super_admin': ['dashboard', 'orders', 'menu', 'customers', 'payments', 'analytics', 'settings'],
+                'order_manager': ['dashboard', 'orders', 'payments', 'analytics'],
+                'menu_manager': ['dashboard', 'menu', 'analytics']
+            };
+            
+            const allowedMenus = menuPermissions[role] || ['dashboard'];
+            
+            // Hide all menu items first
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (!item.id.includes('dashboard')) {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show only allowed menus
+            allowedMenus.forEach(menuId => {
+                const menuItem = document.getElementById(`nav-${menuId}`);
+                if (menuItem) {
+                    menuItem.style.display = 'block';
+                }
+            });
+            
+            // Highlight current page
+            document.querySelectorAll('.nav-item a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const currentLink = document.querySelector('#nav-menu a');
+            if (currentLink) {
+                currentLink.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

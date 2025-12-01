@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - AAI Home Foods</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/contact.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">AAI Home Foods</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="contact.html" class="active">Kontak</a></li>
+                    <li><a href="cart.html" id="cart-icon">🛒 Keranjang</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Preview -->
+    <div class="cart-preview" id="cart-preview">
+        <div class="cart-header">
+            <h3>Keranjang Belanja</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be added dynamically -->
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total">Rp 0</span>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">Checkout</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Hubungi Kami</h1>
+            <p>Kami siap melayani kebutuhan kuliner Anda dengan yang terbaik</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>Alamat</h3>
+                    <p>Jl. Mandala Utara No.8, Tomang, Kec. Grogol petamburan, <br>Jakarta Barat<br>Daerah Khusus Ibukota Jakarta 11440</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>Telepon</h3>
+                    <p>+62 878-8637-1713<br>Senin - Minggu: 08:00 - 22:00</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>AAIHomeFoods@example.com<br>CustomerService@AAIHomeFoods.com</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <h3>Jam Operasional</h3>
+                    <p>Setiap Hari<br>10:00 - 22:00 WIB</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-wrapper">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Kirim Pesan</h2>
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Pilih subjek...</option>
+                                <option value="pesanan">Pertanyaan Pesanan</option>
+                                <option value="menu">Konsultasi Menu</option>
+                                <option value="catering">Pertanyaan Catering</option>
+                                <option value="keluhan">Keluhan & Saran</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tulis pesan Anda di sini..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
+                </div>
+
+                <!-- Map & Quick Contact -->
+                <div class="contact-sidebar">
+                    <!-- Map -->
+                    <div class="map-section">
+                        <h3>Lokasi Kami</h3>
+                        <div class="map-placeholder">
+                            <div class="map-overlay">
+                                <p>📍 Tangerang Selatan, Indonesia</p>
+                                <a href="https://maps.app.goo.gl/4VG52aK3LN9RLtKbA" target="_blank" class="map-link">Buka di Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Contact -->
+                    <div class="quick-contact">
+                        <h3>Kontak Cepat</h3>
+                        <div class="quick-buttons">
+                            <a href="https://wa.me/6287886371713" class="whatsapp-btn" target="_blank">
+                                💬 WhatsApp
+                            </a>
+                            <a href="tel:+6287886371713" class="phone-btn">
+                                📞 Telepon
+                            </a>
+                            <a href="mailto:AAIHomeFoods@example.com" class="email-btn">
+                                📧 Email
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="faq-section">
+                        <h3>Pertanyaan Umum</h3>
+                        <div class="faq-item">
+                            <h4>🕒 Berapa lama waktu pengiriman?</h4>
+                            <p>Biasanya 30-45 menit tergantung lokasi dan kondisi lalu lintas.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>💳 Metode pembayaran apa saja?</h4>
+                            <p>Transfer bank, e-wallet, dan cash on delivery.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>🍽️ Apakah tersedia catering?</h4>
+                            <p>Ya, kami melayani catering untuk acara dengan menu khusus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Siap Memesan?</h2>
+            <p>Pesan sekarang dan nikmati kelezatan masakan rumahan kami</p>
+            <div class="cta-buttons">
+                <a href="menu.html" class="cta-button">Lihat Menu</a>
+                <a href="https://wa.me/6287886371713" class="cta-button-secondary" target="_blank">Pesan via WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AAI Home Foods</h3>
+                    <p>Menghadirkan cita rasa masakan rumahan dengan sistem pemesanan yang mudah.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>📍 Jakarta Barat, Indonesia</li>
+                        <li>📧 AAIHomeFoods@example.com</li>
+                        <li>📱 +62 878-8637-1713</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AAI Home Foods. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/contact.js"></script>
+</body>
+</html>

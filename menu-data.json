@@ -1,0 +1,130 @@
+{
+  "categories": [
+    {
+      "id": "main-course",
+      "name": "Main Course",
+      "description": "Hidangan utama dengan cita rasa istimewa"
+    },
+    {
+      "id": "appetizer",
+      "name": "Appetizer",
+      "description": "Hidangan pembuka yang menggugah selera"
+    },
+    {
+      "id": "soup",
+      "name": "Soup",
+      "description": "Sup hangat dengan racikan spesial"
+    },
+    {
+      "id": "dessert",
+      "name": "Dessert",
+      "description": "Penutup manis untuk melengkapi hidangan"
+    }
+  ],
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Salmon Wellington",
+      "description": "Salmon segar dibalut pastry renyah dengan isian jamur dan herba",
+      "price": 75000,
+      "image": "../assets/images/menu/salmon-wellington.jpg",
+      "category": "main-course",
+      "popular": true,
+      "ingredients": ["Salmon fillet", "Puff pastry", "Jamur", "Herba segar", "Lemon"],
+      "cookingTime": 25,
+      "spiceLevel": 1,
+      "calories": 450
+    },
+    {
+      "id": 2,
+      "name": "Ayam Ulam Bali",
+      "description": "Ayam dengan bumbu Bali tradisional dan campuran ulam segar",
+      "price": 25000,
+      "image": "../assets/images/menu/ayam-ulam-bali.jpg",
+      "category": "main-course",
+      "popular": true,
+      "ingredients": ["Ayam kampung", "Bumbu Bali", "Ulam segar", "Kelapa", "Jeruk limau"],
+      "cookingTime": 30,
+      "spiceLevel": 3,
+      "calories": 380
+    },
+    {
+      "id": 3,
+      "name": "Salmon Mashed Potato",
+      "description": "Fillet salmon panggang dengan mashed potato lembut dan saus spesial",
+      "price": 75000,
+      "image": "../assets/images/menu/salmon-mashed-potato.jpg",
+      "category": "main-course",
+      "popular": false,
+      "ingredients": ["Salmon fillet", "Kentang", "Butter", "Susu", "Dill"],
+      "cookingTime": 20,
+      "spiceLevel": 1,
+      "calories": 520
+    },
+    {
+      "id": 4,
+      "name": "Beef Teppanyaki",
+      "description": "Daging sapi premium dimasak di atas piring panas dengan saus teppanyaki spesial dan sayuran segar",
+      "price": 65000,
+      "image": "../assets/images/menu/beef-teppanyaki.jpg",
+      "category": "main-course",
+      "popular": true,
+      "ingredients": ["Daging sapi", "Saus teppanyaki", "Sayuran mix", "Bawang putih", "Jahe"],
+      "cookingTime": 15,
+      "spiceLevel": 2,
+      "calories": 480
+    },
+    {
+      "id": 5,
+      "name": "Chicken Wonton",
+      "description": "Pangsit ayam isi daging ayam cincang dengan bumbu rempah, disajikan dengan kuah kaldu ayam",
+      "price": 35000,
+      "image": "../assets/images/menu/chicken-wonton.jpg",
+      "category": "appetizer",
+      "popular": false,
+      "ingredients": ["Ayam cincang", "Kulit pangsit", "Kaldu ayam", "Bawang daun", "Rempah"],
+      "cookingTime": 12,
+      "spiceLevel": 1,
+      "calories": 280
+    },
+    {
+      "id": 6,
+      "name": "Zuppa Soup",
+      "description": "Sup krim jamur dengan potongan jamur segar, bawang, dan rempah-rempah Italia",
+      "price": 28000,
+      "image": "../assets/images/menu/zuppa-soup.jpg",
+      "category": "soup",
+      "popular": true,
+      "ingredients": ["Jamur segar", "Krim", "Bawang bombay", "Kaldu ayam", "Rempah Italia"],
+      "cookingTime": 18,
+      "spiceLevel": 1,
+      "calories": 220
+    },
+    {
+      "id": 7,
+      "name": "Grilled Chicken Salad",
+      "description": "Salad segar dengan ayam panggang, sayuran mix, dan dressing spesial",
+      "price": 45000,
+      "image": "../assets/images/menu/grilled-chicken-salad.jpg",
+      "category": "appetizer",
+      "popular": false,
+      "ingredients": ["Ayam fillet", "Selada", "Tomat cherry", "Timun", "Dressing madu"],
+      "cookingTime": 10,
+      "spiceLevel": 1,
+      "calories": 320
+    },
+    {
+      "id": 8,
+      "name": "Seafood Pasta",
+      "description": "Pasta dengan campuran seafood segar dalam saus tomato cream",
+      "price": 68000,
+      "image": "../assets/images/menu/seafood-pasta.jpg",
+      "category": "main-course",
+      "popular": true,
+      "ingredients": ["Pasta", "Udang", "Cumi", "Kerang", "Saus tomato cream"],
+      "cookingTime": 22,
+      "spiceLevel": 2,
+      "calories": 580
+    }
+  ]
+}

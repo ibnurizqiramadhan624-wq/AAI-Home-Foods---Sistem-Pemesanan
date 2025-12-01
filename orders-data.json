@@ -1,0 +1,71 @@
+{
+  "orders": [],
+  "orderStatuses": [
+    {
+      "id": "confirmed",
+      "name": "Dikonfirmasi",
+      "description": "Pesanan telah diterima dan sedang diproses",
+      "color": "#27ae60"
+    },
+    {
+      "id": "preparing",
+      "name": "Sedang Dimasak",
+      "description": "Chef sedang menyiapkan pesanan Anda",
+      "color": "#f39c12"
+    },
+    {
+      "id": "delivering",
+      "name": "Dalam Pengiriman",
+      "description": "Pesanan sedang dalam perjalanan ke alamat Anda",
+      "color": "#3498db"
+    },
+    {
+      "id": "delivered",
+      "name": "Terkirim",
+      "description": "Pesanan telah sampai di tujuan",
+      "color": "#9b59b6"
+    },
+    {
+      "id": "cancelled",
+      "name": "Dibatalkan",
+      "description": "Pesanan telah dibatalkan",
+      "color": "#e74c3c"
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": "cod",
+      "name": "Cash on Delivery",
+      "description": "Bayar ketika pesanan sampai",
+      "icon": "💵"
+    },
+    {
+      "id": "transfer",
+      "name": "Transfer Bank",
+      "description": "Transfer melalui bank BCA, BNI, Mandiri, atau BRI",
+      "icon": "🏦"
+    },
+    {
+      "id": "ewallet",
+      "name": "E-Wallet",
+      "description": "Gopay, OVO, Dana, atau ShopeePay",
+      "icon": "📱"
+    }
+  ],
+  "deliveryZones": [
+    {
+      "id": "zone_1",
+      "name": "Tangerang Selatan Pusat",
+      "description": "Area pusat kota Tangerang Selatan",
+      "deliveryTime": "30-45 menit",
+      "deliveryCost": 10000
+    },
+    {
+      "id": "zone_2",
+      "name": "Tangerang Selatan Pinggiran",
+      "description": "Area pinggiran kota Tangerang Selatan",
+      "deliveryTime": "45-60 menit",
+      "deliveryCost": 15000
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang - AAI Home Foods</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/cart.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">AAI Home Foods</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                    <li><a href="cart.html" class="active" id="cart-icon">🛒 Keranjang</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Main Section -->
+    <section class="cart-hero">
+        <div class="container">
+            <h1>Keranjang Belanja</h1>
+            <p>Review pesanan Anda sebelum checkout</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-content">
+        <div class="container">
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items-section">
+                    <div class="section-header">
+                        <h2>Item Pesanan</h2>
+                        <span class="item-count" id="item-count">0 items</span>
+                    </div>
+                    
+                    <div class="cart-items-list" id="cart-items-list">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    
+                    <div class="empty-cart" id="empty-cart">
+                        <div class="empty-icon">🛒</div>
+                        <h3>Keranjang Kosong</h3>
+                        <p>Belum ada item di keranjang Anda</p>
+                        <a href="menu.html" class="cta-button">Lihat Menu</a>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-card">
+                        <h3>Ringkasan Pesanan</h3>
+                        
+                        <div class="summary-details">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">Rp 0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Biaya Pengiriman</span>
+                                <span id="delivery-cost">Rp 10,000</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Biaya Layanan</span>
+                                <span id="service-cost">Rp 2,000</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span id="total-amount">Rp 0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="delivery-info">
+                            <h4>📦 Estimasi Pengiriman</h4>
+                            <p>30-45 menit</p>
+                        </div>
+                        
+                        <div class="payment-methods">
+                            <h4>💳 Metode Pembayaran</h4>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="cod" checked>
+                                    <span>Cash on Delivery</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="transfer">
+                                    <span>Transfer Bank</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="ewallet">
+                                    <span>E-Wallet</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="checkout-btn-large" id="checkout-btn-large">
+                            Lanjutkan ke Checkout
+                        </button>
+                        
+                        <div class="continue-shopping">
+                            <a href="menu.html">← Lanjutkan Belanja</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Items -->
+    <section class="recommended-items" id="recommended-items">
+        <div class="container">
+            <h2>Anda Mungkin Juga Suka</h2>
+            <div class="recommended-grid">
+                <!-- Recommended items will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AAI Home Foods</h3>
+                    <p>Menghadirkan cita rasa masakan rumahan dengan sistem pemesanan yang mudah.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>📍 Jakarta Barat, Indonesia</li>
+                        <li>📧 AAIHomeFoods@example.com</li>
+                        <li>📱 +62 878-8637-1713</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AAI Home Foods. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/cart.js"></script>
+</body>
+</html>

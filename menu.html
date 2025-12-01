@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lengkap - AAI Home Foods</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/menu.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">AAI Home Foods</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="menu.html" class="active">Menu</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                    <li><a href="cart.html" id="cart-icon">🛒 Keranjang</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Preview -->
+    <div class="cart-preview" id="cart-preview">
+        <div class="cart-header">
+            <h3>Keranjang Belanja</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be added dynamically -->
+        </div>
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total">Rp 0</span>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">Checkout</button>
+    </div>
+
+    <!-- Hero Section Menu -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1>Menu Lengkap Kami</h1>
+            <p>Temukan berbagai pilihan makanan rumahan premium dengan cita rasa terbaik</p>
+        </div>
+    </section>
+
+    <!-- Filter & Search Section -->
+    <section class="menu-filters">
+        <div class="container">
+            <div class="filter-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Cari menu...">
+                    <button type="button">🔍</button>
+                </div>
+                
+                <div class="filter-options">
+                    <select id="category-filter">
+                        <option value="all">Semua Kategori</option>
+                        <option value="main-course">Main Course</option>
+                        <option value="appetizer">Appetizer</option>
+                        <option value="soup">Soup</option>
+                    </select>
+                    
+                    <select id="sort-by">
+                        <option value="name">Urutkan: Nama A-Z</option>
+                        <option value="price-low">Harga: Terendah</option>
+                        <option value="price-high">Harga: Tertinggi</option>
+                        <option value="popular">Paling Populer</option>
+                    </select>
+
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">◼◼</button>
+                        <button class="view-btn" data-view="list">☰</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Grid Section -->
+    <section class="all-menu">
+        <div class="container">
+            <div class="menu-grid" id="all-menu-grid" data-view="grid">
+                <!-- All menu items will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="menu-stats">
+                <p id="menu-count">Menampilkan 6 dari 6 menu</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="menu-cta">
+        <div class="container">
+            <h2>Butuh Menu Khusus atau Catering?</h2>
+            <p>Kami juga melayani pesanan khusus untuk acara dan catering. Hubungi kami untuk konsultasi menu.</p>
+            <a href="contact.html" class="cta-button">Konsultasi Menu</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AAI Home Foods</h3>
+                    <p>Menghadirkan cita rasa masakan rumahan dengan sistem pemesanan yang mudah.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>📍 Jakarta Barat, Indonesia</li>
+                        <li>📧 AAIHomeFoods@example.com</li>
+                        <li>📱 +62 878-8637-1713</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AAI Home Foods. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>

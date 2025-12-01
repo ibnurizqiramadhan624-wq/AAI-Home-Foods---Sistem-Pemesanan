@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - AAI Home Foods</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/checkout.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">AAI Home Foods</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="about.html">Tentang</a></li>
+                    <li><a href="contact.html">Kontak</a></li>
+                    <li><a href="cart.html" id="cart-icon">🛒 Keranjang</a></li>
+                    <li><a href="login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Checkout Progress -->
+    <section class="checkout-progress">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step active">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Keranjang</span>
+                </div>
+                <div class="step active">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Checkout</span>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Konfirmasi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <section class="checkout-content">
+        <div class="container">
+            <div class="checkout-layout">
+                <!-- Checkout Form -->
+                <div class="checkout-form-section">
+                    <h2>Informasi Pengiriman</h2>
+                    
+                    <form id="checkout-form" class="checkout-form">
+                        <!-- Customer Information -->
+                        <div class="form-section">
+                            <h3>Data Diri</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="customer-name">Nama Lengkap *</label>
+                                    <input type="text" id="customer-name" name="customerName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer-email">Email *</label>
+                                    <input type="email" id="customer-email" name="customerEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customer-phone">Nomor Telepon *</label>
+                                    <input type="tel" id="customer-phone" name="customerPhone" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Address -->
+                        <div class="form-section">
+                            <h3>Alamat Pengiriman</h3>
+                            <div class="form-group">
+                                <label for="delivery-address">Alamat Lengkap *</label>
+                                <textarea id="delivery-address" name="deliveryAddress" rows="3" required placeholder="Jl. Contoh No. 123, RT/RW, Kelurahan, Kecamatan"></textarea>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="city">Kota *</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="postal-code">Kode Pos</label>
+                                    <input type="text" id="postal-code" name="postalCode">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="delivery-notes">Catatan Pengiriman (Opsional)</label>
+                                <textarea id="delivery-notes" name="deliveryNotes" rows="2" placeholder="Contoh: Rumah warna biru, dekat warung"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Time -->
+                        <div class="form-section">
+                            <h3>Waktu Pengiriman</h3>
+                            <div class="delivery-options">
+                                <label class="delivery-option">
+                                    <input type="radio" name="deliveryTime" value="asap" checked>
+                                    <span class="option-content">
+                                        <strong>Segera</strong>
+                                        <small>Dikirim dalam 30-45 menit</small>
+                                    </span>
+                                </label>
+                                <label class="delivery-option">
+                                    <input type="radio" name="deliveryTime" value="schedule">
+                                    <span class="option-content">
+                                        <strong>Jadwalkan</strong>
+                                        <small>Pilih waktu pengiriman</small>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="scheduled-time" id="scheduled-time" style="display: none;">
+                                <div class="form-group">
+                                    <label for="delivery-date">Tanggal Pengiriman</label>
+                                    <input type="date" id="delivery-date" name="deliveryDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="delivery-time">Waktu Pengiriman</label>
+                                    <input type="time" id="delivery-time" name="deliveryTime">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h3>Metode Pembayaran</h3>
+                            <div class="payment-options">
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="cod" checked>
+                                    <span class="option-content">
+                                        <strong>Cash on Delivery (COD)</strong>
+                                        <small>Bayar ketika pesanan sampai</small>
+                                    </span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="transfer">
+                                    <span class="option-content">
+                                        <strong>Transfer Bank</strong>
+                                        <small>BCA, BNI, Mandiri, BRI</small>
+                                    </span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="ewallet">
+                                    <span class="option-content">
+                                        <strong>E-Wallet</strong>
+                                        <small>Gopay, OVO, Dana, ShopeePay</small>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <a href="cart.html" class="back-btn">← Kembali ke Keranjang</a>
+                            <button type="submit" class="submit-order-btn">Buat Pesanan</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary-sidebar">
+                    <div class="summary-card">
+                        <h3>Ringkasan Pesanan</h3>
+                        
+                        <div class="order-items" id="order-items">
+                            <!-- Order items will be loaded here -->
+                        </div>
+                        
+                        <div class="summary-totals">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="summary-subtotal">Rp 0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Biaya Pengiriman</span>
+                                <span id="summary-delivery">Rp 10,000</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Biaya Layanan</span>
+                                <span id="summary-service">Rp 2,000</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total</span>
+                                <span id="summary-total">Rp 0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="delivery-info">
+                            <h4>📦 Estimasi Pengiriman</h4>
+                            <p id="delivery-estimate">30-45 menit</p>
+                        </div>
+                        
+                        <div class="customer-support">
+                            <h4>💁 Butuh Bantuan?</h4>
+                            <p>Hubungi kami di <strong>+62 878-8637-1713</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AAI Home Foods</h3>
+                    <p>Menghadirkan cita rasa masakan rumahan dengan sistem pemesanan yang mudah.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">Beranda</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="about.html">Tentang</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li>📍 Jakarta Barat, Indonesia</li>
+                        <li>📧 AAIHomeFoods@example.com</li>
+                        <li>📱 +62 878-8637-1713</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AAI Home Foods. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/checkout.js"></script>
+</body>
+</html>

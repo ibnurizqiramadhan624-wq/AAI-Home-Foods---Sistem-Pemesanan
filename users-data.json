@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "id": "user_001",
+      "name": "Admin User",
+      "email": "admin@aaihomefoods.com",
+      "password": "admin123",
+      "phone": "+6287886371713",
+      "role": "admin",
+      "avatar": "../assets/images/avatars/admin.jpg",
+      "joinDate": "2024-01-01T00:00:00.000Z",
+      "points": 1000,
+      "preferences": {
+        "newsletter": true,
+        "promotions": true,
+        "dietary": []
+      },
+      "addresses": [
+        {
+          "id": "addr_001",
+          "type": "home",
+          "name": "Rumah",
+          "address": "Jl. Culinary No. 123",
+          "city": "Tangerang Selatan",
+          "postalCode": "15413",
+          "isDefault": true
+        }
+      ]
+    }
+  ],
+  "userSessions": [],
+  "userActivities": []
+}
